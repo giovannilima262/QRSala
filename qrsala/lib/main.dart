@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  String result = "Hey there !";
+  String result = "QRCode";
 
   Future _scanQR() async {
     try {
@@ -28,20 +28,20 @@ class HomePageState extends State<HomePage> {
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
-          result = "Camera permission was denied";
+          result = "A camera é necessária";
         });
       } else {
         setState(() {
-          result = "Unknown Error $ex";
+          
         });
       }
     } on FormatException {
       setState(() {
-        result = "You pressed the back button before scanning anything";
+        
       });
     } catch (ex) {
       setState(() {
-        result = "Unknown Error $ex";
+        
       });
     }
   }
@@ -50,8 +50,15 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("QRSala"),
-      ),
+          title: Row(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.all(5),
+            child: Image.asset("imagens/logo.png"),
+          ),
+          Text("QRSala"),
+        ],
+      )),
       body: Center(
         child: Text(
           result,
