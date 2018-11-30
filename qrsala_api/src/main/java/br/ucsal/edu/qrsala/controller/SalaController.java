@@ -3,12 +3,11 @@ package br.ucsal.edu.qrsala.controller;
 
 import java.util.List;
 
+import com.sun.org.glassfish.gmbal.ParameterNames;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.ucsal.edu.qrsala.local.entity.Sala;
 import br.ucsal.edu.qrsala.local.service.SalaService;
@@ -21,11 +20,21 @@ public class SalaController {
     @Autowired
     private SalaService salaService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<Sala>> obterTodosPorTipo() {
+    @RequestMapping(value = "/distinct", method = RequestMethod.GET)
+    public ResponseEntity<List<String>> obterTodosPorTipo() {
         try {
-            List<Sala> gastos = salaService.obterTodos();
-            return new ResponseEntity<>(gastos, HttpStatus.OK);
+            List<String> salas = salaService.obterDistinctNome();
+            return new ResponseEntity<>(salas, HttpStatus.OK);
+        }catch (Exception e){
+            return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/{nome}", method = RequestMethod.GET)
+    public ResponseEntity<List<Sala>> obterTodosPorTipo(@PathVariable String nome) {
+        try {
+            List<Sala> salas = salaService.obterSalasPorNome(nome);
+            return new ResponseEntity<>(salas, HttpStatus.OK);
         }catch (Exception e){
             return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
