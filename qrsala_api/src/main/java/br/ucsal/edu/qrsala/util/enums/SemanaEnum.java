@@ -27,6 +27,17 @@ public enum SemanaEnum {
         return "";
     }
 
+    public static SemanaEnum enumPorCodigo(Integer diaSemana) {
+        for (SemanaEnum semanaEnum : values()) {
+            if(semanaEnum.codigo.equals(diaSemana)){
+                return semanaEnum;
+            }
+        }
+        return null;
+    }
+
+
+
     public Integer getCodigo() {
         return codigo;
     }

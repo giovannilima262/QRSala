@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
           padding: EdgeInsets.all(5),
           child: StreamBuilder(
             stream: homeController.outSalas,
-            initialData: Container(),
+            initialData: List<dynamic>(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               return GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -31,10 +31,10 @@ class HomePage extends StatelessWidget {
                   return Card(
                     child: ListTile(
                       onTap: () =>
-                          homeController.telaSala(snapshot.data[position]),
+                          homeController.telaSala(snapshot.data[position]["diaSemana"]),
                       title: Center(
                         child: Text(
-                          snapshot.data[position],
+                          snapshot.data[position]["descricaoSemana"],
                           style: TextStyle(
                             fontSize: 24,
                           ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:qrsala/homePage/home-controller.dart';
 import 'package:qrsala/homePage/home-widget.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:qrsala/salaPage/sala-widget.dart';
 
 void main() => runApp(
       BlocProvider<HomeController>(

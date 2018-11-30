@@ -43,12 +43,12 @@ class HomeController implements BlocBase {
   }
 
   listarSalas() async {
-    await _salaService.obterDistinctNome().then((data) {
+    await _salaService.obterDistinctSemana().then((data) {
       _streamSalas.value = data;
     }, onError: (error) {});
   }
 
-  telaSala(String nome) {
+  telaSala(int nome) {
     Navigator.push(
         context,
         new MaterialPageRoute(

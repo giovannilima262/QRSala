@@ -19,6 +19,9 @@ public interface SalaRepository extends JpaRepository<Sala, Long> {
     public List<String> obterDistinctNome();
 
 
-    @Query("SELECT sala FROM Sala sala WHERE sala.nome = :nome")
-    public List<Sala> obterSalasPorNome(@Param("nome") String nome);
+    @Query("SELECT sala FROM Sala sala WHERE sala.diaSemana = :semana ")
+    public List<Sala> obterSalasPorDiaSemana(@Param("semana") Integer semana);
+
+    @Query("SELECT distinct sala.diaSemana FROM Sala sala")
+    public List<Integer> obterDistinctSemana();
 }
