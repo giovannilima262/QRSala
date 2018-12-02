@@ -23,10 +23,10 @@ public class SalaController {
     @Autowired
     private SalaService salaService;
 
-    @RequestMapping(value = "/nome/distinct", method = RequestMethod.GET)
-    public ResponseEntity<List<String>> obterDistinctNome() {
+    @RequestMapping(value = "/nome/{nome}/semana/{semana}", method = RequestMethod.GET)
+    public ResponseEntity<List<Sala>> obterPorNomeAndSemana(@PathVariable String nome, @PathVariable Integer semana) {
         try {
-            List<String> salas = salaService.obterDistinctNome();
+            List<Sala> salas = salaService.obterPorNomeAndSemana(nome, semana);
             return new ResponseEntity<>(salas, HttpStatus.OK);
         }catch (Exception e){
             return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -34,7 +34,7 @@ public class SalaController {
     }
 
     @RequestMapping(value = "/semana/distinct", method = RequestMethod.GET)
-    public ResponseEntity<List<SemanaDTO>> obterDistinctSemana() {
+    public ResponseEntity<List<SemanaDTO>> obterSalaDistinctPorSemana() {
         try {
             List<SemanaDTO> salas = salaService.obterDistinctSemana();
             return new ResponseEntity<>(salas, HttpStatus.OK);
@@ -43,10 +43,10 @@ public class SalaController {
         }
     }
 
-    @RequestMapping(value = "/semana/{semana}", method = RequestMethod.GET)
-    public ResponseEntity<List<Sala>> obterTodosPorTipo(@PathVariable Integer semana) {
+    @RequestMapping(value = "/distinct/semana/{semana}", method = RequestMethod.GET)
+    public ResponseEntity<List<String>> obterSalaDistinctPorSemana(@PathVariable Integer semana) {
         try {
-            List<Sala> salas = salaService.obterSalasPorDiaSemana(semana);
+            List<String> salas = salaService.obterSalaDistinctPorSemana(semana);
             return new ResponseEntity<>(salas, HttpStatus.OK);
         }catch (Exception e){
             return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);

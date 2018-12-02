@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:qrsala/rest/sala-service.dart';
+import 'package:qrsala/salaPage/sala-descricao-windget.dart';
 import 'package:qrsala/salaPage/sala-widget.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -35,11 +36,21 @@ class HomeController implements BlocBase {
       String qrResult = await BarcodeScanner.scan();
 
       result = qrResult;
+      telaSalaDescricao(null, null, result);
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.CameraAccessDenied) {
         // Mensagem câmera necessária
       }
     } on FormatException {} catch (ex) {}
+  }
+
+  telaSalaDescricao(nome, semana, qrCode) {
+    Navigator.push(
+      context,
+      new MaterialPageRoute(
+        builder: (BuildContext context) => new SalaDescricaoPage(nome, semana, qrCode),
+      ),
+    );
   }
 
   listarSalas() async {
@@ -50,10 +61,10 @@ class HomeController implements BlocBase {
 
   telaSala(int nome) {
     Navigator.push(
-        context,
-        new MaterialPageRoute(
-          builder: (BuildContext context) =>
-              new SalaPage(nome),
-        ));
+      context,
+      new MaterialPageRoute(
+        builder: (BuildContext context) => new SalaPage(nome),
+      ),
+    );
   }
 }

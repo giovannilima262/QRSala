@@ -19,40 +19,15 @@ public class SalaService {
     @Autowired
     private SalaRepository salaRepository;
 
-    public List<Sala> obterTodos(){
-        List<Sala> salas = salaRepository.obterTodos();
-        salas = adicionarDescricaoSemana(salas);
+    public List<Sala> obterPorNomeAndSemana(String nome, Integer semana){
+        List<Sala> salas = salaRepository.obterPorNomeAndSemana(nome, semana);
+        adicionarDescricaoSemana(salas);
         return salas;
     }
 
-    public List<String> obterDistinctNome(){
-        return salaRepository.obterDistinctNome();
-    }
-
-
-    public List<Sala> obterSalasPorDiaSemana(Integer semana) {
-        List<Sala> salas = salaRepository.obterSalasPorDiaSemana(semana);
-        salas = adicionarDescricaoSemana(salas);
+    public List<String> obterSalaDistinctPorSemana(Integer semana) {
+        List<String> salas = salaRepository.obterSalaDistinctPorSemana(semana);
         return salas;
-    }
-
-    private List<SemanaSalaDTO> agruparSalasPorSemana(List<Sala> salas) {
-        List<SemanaSalaDTO> semanaSalaDTOList = new ArrayList<>();
-        Integer diaSemanaAnterior = null;
-        SemanaSalaDTO semanaSalaDTO = new SemanaSalaDTO();
-        for (Sala sala : salas) {
-            if(diaSemanaAnterior == null || !sala.getDiaSemana().equals(diaSemanaAnterior)) {
-                semanaSalaDTO = new SemanaSalaDTO();
-                semanaSalaDTO.setDescricaoSemana(sala.getDescricaoDiaSemana());
-                semanaSalaDTO.setDiaSemana(sala.getDiaSemana());
-            }else {
-                semanaSalaDTOList.add(semanaSalaDTO);
-            }
-            semanaSalaDTO.getSalas().add(sala);
-            diaSemanaAnterior = sala.getDiaSemana();
-
-        }
-        return semanaSalaDTOList;
     }
 
     private List<Sala> adicionarDescricaoSemana(List<Sala> salas) {

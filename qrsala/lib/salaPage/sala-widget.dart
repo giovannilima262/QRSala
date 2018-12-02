@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:qrsala/rest/sala-service.dart';
+import 'package:qrsala/salaPage/sala-descricao-windget.dart';
 
 class SalaPage extends StatefulWidget {
-  SalaPage(this.nome, {Key key}) : super(key: key);
+  SalaPage(this.semana, {Key key}) : super(key: key);
 
-  final int nome;
+  final int semana;
 
   @override
   SalaPageState createState() {
@@ -15,23 +16,31 @@ class SalaPage extends StatefulWidget {
 class SalaPageState extends State<SalaPage> {
   SalaService _salaService = SalaService();
   List<dynamic> salas = List<dynamic>();
-  buscarSalaPorNome() {
-    _salaService.obterSalaPorSemana(widget.nome).then((data) {
+  buscarSalaDistinctPorSemana() {
+    _salaService.obterSalaDistinctPorSemana(widget.semana).then((data) {
       setState(() {
         salas = data;
       });
     }, onError: () {});
   }
 
+  telaSalaDescricao(nome, semana) {
+    Navigator.push(
+      context,
+      new MaterialPageRoute(
+        builder: (BuildContext context) => new SalaDescricaoPage(nome, semana, null),
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
-    buscarSalaPorNome();
+    buscarSalaDistinctPorSemana();
   }
 
   @override
   Widget build(BuildContext context) {
-    String nome = "";
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -44,48 +53,21 @@ class SalaPageState extends State<SalaPage> {
           ],
         ),
       ),
-      body: ListView.builder(
+      body: GridView.builder(
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemCount: salas.length,
         itemBuilder: (context, position) {
-          if (nome != salas[position]["nome"]) {
-            nome = salas[position]["nome"];
-            return Padding(
-              padding: EdgeInsets.all(5),
-              child: Center(
-                child: Text(
-                salas[position]["nome"],
-                style: TextStyle(
-                  fontSize: 30,
-                ),
-              ),
-              ),
-            );
-          }
           return Card(
             child: ListTile(
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    salas[position]["nomeProfessor"],
-                    style: TextStyle(
-                      fontSize: 24,
-                    ),
+              onTap: () => telaSalaDescricao(salas[position], widget.semana),
+              title: Center(
+                child: Text(
+                  salas[position],
+                  style: TextStyle(
+                    fontSize: 24,
                   ),
-                  Text(
-                    "Início: ${salas[position]["horarioInicio"]}",
-                    style: TextStyle(
-                      fontSize: 24,
-                    ),
-                  ),
-                  Text(
-                    "Fim: ${salas[position]["horarioFim"]}",
-                    style: TextStyle(
-                      fontSize: 24,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           );
