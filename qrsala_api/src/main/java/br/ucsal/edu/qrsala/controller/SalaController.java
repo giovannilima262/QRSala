@@ -6,7 +6,6 @@ import java.util.List;
 import br.ucsal.edu.qrsala.local.entity.DTO.SemanaDTO;
 import br.ucsal.edu.qrsala.local.entity.DTO.SemanaSalaDTO;
 import br.ucsal.edu.qrsala.util.enums.SemanaEnum;
-import com.sun.org.glassfish.gmbal.ParameterNames;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
