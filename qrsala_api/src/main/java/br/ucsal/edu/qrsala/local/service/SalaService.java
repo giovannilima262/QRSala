@@ -41,10 +41,12 @@ public class SalaService {
     public List<SemanaDTO> obterDistinctSemana() {
         List<Integer> diaSemanaIntegerList = salaRepository.obterDistinctSemana();
         List<SemanaDTO> descricaoStringList = new ArrayList<>();
-        for (int i = 0; i < diaSemanaIntegerList.size(); i++) {
-            Integer dia = diaSemanaIntegerList.get(i);
-            SemanaEnum semanaEnum = SemanaEnum.enumPorCodigo(dia);
-            descricaoStringList.add(new SemanaDTO(semanaEnum.getCodigo(), semanaEnum.getDescricao()));
+        if(diaSemanaIntegerList != null) {
+            for (int i = 0; i < diaSemanaIntegerList.size(); i++) {
+                Integer dia = diaSemanaIntegerList.get(i);
+                SemanaEnum semanaEnum = SemanaEnum.enumPorCodigo(dia);
+                descricaoStringList.add(new SemanaDTO(semanaEnum.getCodigo(), semanaEnum.getDescricao()));
+            }
         }
         return descricaoStringList;
     }
