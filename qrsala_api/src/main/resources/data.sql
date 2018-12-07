@@ -27,16 +27,16 @@ insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMA
 insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(23,'208B', 'João', '07:00', '09:40', 1);
 insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(24,'208B', 'Mateus', '09:50', '12:30', 1);
 
-insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(25,'208B', 'Jose', '07:00', '09:40', 4)
+insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(25,'208B', 'Jose', '07:00', '09:40', 4);
 insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(26,'208B', 'Fernando', '09:50', '12:30', 4);
-insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(27,'208B', 'Guilherme', '07:00', '09:40', 3)
+insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(27,'208B', 'Guilherme', '07:00', '09:40', 3);
 insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(28,'208B', 'Jorge', '09:50', '12:30', 3);
 
 
 insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(29,'209B', 'Mario Jorge', '07:00', '09:40', 5);
 insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(30,'209B', 'João', '09:50', '12:30', 5);
 insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(31,'209B', 'Luiz', '07:00', '09:40', 1);
-insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(32,'209B', 'Mario', '09:50', '12:30', 1)
+insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(32,'209B', 'Mario', '09:50', '12:30', 1);
 
 insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(33,'209B', 'Neiva', '07:05', '09:40', 5);
 insert into sala (ID, NOME, NOME_PROFESSOR, HORARIO_INICIO, HORARIO_FIM, DIASEMANA) values(34,'209B', 'Mario Jorge', '09:40', '12:30', 5);
